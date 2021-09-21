@@ -8,7 +8,6 @@ class MainCustomers extends Component {
     return (
       // <ListMenu >
         <section >
-          <h1>Hello world</h1>
           <CardGroupContainer field='drinks' />
           <CardGroupContainer field='proteins' />
           <CardGroupContainer field='groceries' />
