@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import  Link  from 'next/link';
 
 
-// import {SimpleRating} from '../index.components'
+import {SimpleRating} from 'components/common/index'
 
 
 import { BASE_URL } from 'api/Variables.api';
@@ -90,7 +90,7 @@ function MediaCard(props) {
               {props.name}
             </Typography>
 
-            {/* <SimpleRating /> */}
+            <SimpleRating />
 
 
             <Typography variant="body2" color="textSecondary" component="p">
