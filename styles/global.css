@@ -1,0 +1,83 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+* {
+  font-family: IRANYekan;
+}
+
+/* // tr:nth-child(even) {
+//   background-color: #ccc;
+// } */
+
+.easy-edit-inline-wrapper {
+  width: 80px;
+  /* // display: inline-block; */
+}
+
+.easy-edit-wrapper {
+  color: #4242d7;
+  text-decoration: underline;
+}
+
+/* .MuiTableRow-root{
+  // &:nth-child(even) {
+  //   background-color: rgb(245, 245, 245) !important;
+  // } */
+
+  
+/* } */
+.MuiTableRow-root:hover {
+  background-color: rgb(233, 233, 233) !important;
+}
+.date-input-with-dialog-empty{
+  display: none;
+}
+.date-input-with-dialog-calendar{
+  /* // right:1rem; */
+  top: 1.3rem;
+  width: 30px;
+}
+/* .JDatePicker{
+//  position: absolute;  
+//  left: 50%;
+//  top: 50%;
+ transform:  translate(-50%,0%);
+} */
+
+
+.next-image-logo{
+  width: 50px;
+  height: 50px;
+  filter: invert()
+}
+
+.next-image-logoText{
+
+    width: 190px !important;
+    height: 40px !important;
+    filter: invert();
+    padding-top: 3px!important;
+    padding-right: 13px !important;
+    margin-right: 10px;
+}
+
+.next-image-logoText:hover{
+  cursor: pointer;
+  filter: invert(.9) drop-shadow(2px 2px 40px rgb(99, 99, 99));
+}

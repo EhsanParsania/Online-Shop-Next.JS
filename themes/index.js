@@ -1,14 +1,11 @@
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core/styles"
-
 const theme = createMuiTheme({
     direction: 'rtl',
     palette: {
-        primary: {
-            main: '#c62828',
-        },
-        secondary: {
-            main: '#2196f3',
-        },
+        primary: { main: '#3f51b5' },
+        // secondary: {
+        //     main: '#2196f3',
+        // },
         background: {
             default: "#ffffff"
         },
@@ -18,6 +15,13 @@ const theme = createMuiTheme({
             'IRANYekan',
             'Roboto'
         ].join(','),
+        overrides: {
+            MuiCssBaseline: {
+                '@global': {
+                    '@font-face': ['IRANYekan'],
+                },
+            },
+        },
     }
 });
 
