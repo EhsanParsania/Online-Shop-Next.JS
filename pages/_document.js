@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="stylesheet" href="/fonts/IRANYekan.css" />
         </Head>
-        <body dir="rtl">
+        <body >
           <Main />
           <NextScript />
         </body>
