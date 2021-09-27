@@ -214,7 +214,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  searchContainer    : {
+  searchContainer: {
     display: 'flex',
   }
 
@@ -269,31 +269,31 @@ export function ListMenu({ children }) {
 
 
             {/* <Typography variant="h6" className={classes.title}> */}
-              <Link href='/' passHref >
-                <div style={style.logoContainer}>
+            <Link href='/' passHref >
+              <div style={style.logoContainer}>
 
-                  {/* <Typography className={classes.title} noWrap> */}
+                {/* <Typography className={classes.title} noWrap> */}
 
-                  <Image className={'next-image-logoText'} src={logoText} alt='logoText' height='37' width='160' />
+                <Image className={'next-image-logoText'} src={logoText} alt='logoText' height='37' width='160' />
 
-                    <div className={classes.searchContainer}>
-                      <a href='/admin/login'><Button color="inherit" className={classes.button}>مدیریت</Button></a>
-                      <Link href='/cart' passHref>
-                        <CartButton />
+                <div className={classes.searchContainer}>
+                  <a href='/admin/login'><Button color="inherit" className={classes.button}>مدیریت</Button></a>
+                  <Link href='/cart' passHref>
+                    <CartButton />
 
-                      </Link>
-                    </div>
-
-                    <SearchField />
-
-                    <Image src={persiaIcon} className={'next-image-logo'} alt='logo' height='50' width='50' />
-
-                  {/* </Typography> */}
-
+                  </Link>
                 </div>
-              </Link>
-              <Spinner open={loading} />
-              {/* <div className={classes.grow} /> */}
+
+                <SearchField />
+
+                <Image src={persiaIcon} className={'next-image-logo'} alt='logo' height='50' width='50' />
+
+                {/* </Typography> */}
+
+              </div>
+            </Link>
+            <Spinner open={loading} />
+            {/* <div className={classes.grow} /> */}
 
             {/* </Typography> */}
             {/* <div dir='rtl' >
