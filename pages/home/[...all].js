@@ -1,26 +1,55 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React, { Component } from 'react'
 import { getFilteredProducts } from 'api/API'
 import { Paginate, Spinner } from 'components/common/index'
 import { CardGroup } from 'components/customers/CardGroup/CardGroup.component'
-import MainLayout  from 'layouts/MainLayout'
+import { withRouter } from 'next/router'
 
 
-function Store(props) {
-  const router = useRouter()
-  const [group, subgroup, pageNumber] = router.query.all
-
-
-  const [state, setState] = useState({
+class ProductsListtt extends Component {
+  state = {
     pageNumber: 1,
     numberOfPages: '',
     data: [{}],
     group: '',
     subgroup: '',
     isLoading: true
-  })
+  }
 
-  const handleGetData = async (group, subgroup, id = 1) => {
+  async componentDidMount() {
+    const  [group, subgroup, id ] = this.props.router.query.all
+    console.log('==================','pageNumber',this.state.pageNumber,'id',id,'=======================')
+
+    await this.setState({
+      pageNumber: id,
+      group,
+      subgroup
+    })
+
+    await this.handleGetData(group, subgroup, id)
+    this.setState({ isLoading: false })
+  }
+
+
+  async shouldComponentUpdate(nextProps, nextState) {
+    // const { id, subgroup } = this.props.match.params
+    const [newGroup, newSubgroup, newId] = nextProps.router.query.all
+
+    if (this.state.pageNumber !== newId|| this.state.subgroup !== newSubgroup || this.state.group !== newGroup) {
+
+
+      // const subgroup = nextProps.match.params.subgroup
+      // const id = nextProps.match.params.id
+      // const group = nextProps.match.params.group
+      await this.handleGetData(newGroup, newSubgroup, newId)
+      await this.setState({ group: newGroup, pageNumber: newId, subgroup: newSubgroup })
+      this.setState({ isLoading: false })
+      return false
+    }
+    else return false
+  }
+
+
+  handleGetData = async (group, subgroup, id = 1) => {
     const limit = 6
 
     try {
@@ -28,39 +57,36 @@ function Store(props) {
       const totalCount = headers ? headers['x-total-count'] : 1
       const numberOfPages = Math.ceil(totalCount / limit)
       console.log(numberOfPages)
-      await setState({ ...state, data, numberOfPages, pageNumber: id, subgroup: subgroup, group: group ,isLoading:false})
+      await this.setState({ data, numberOfPages, pageNumber: id, subgroup: subgroup, group: group })
     }
     catch (error) {
       console.log('get data failed with error ==> ', error.message)
     }
   }
 
-  useEffect(() => {
-    const [group, subgroup, pageNumber] = router.query.all
-    console.log(group, subgroup, pageNumber)
-    handleGetData(group, subgroup, pageNumber)
-
-  }, [handleGetData])
-  return (
-    <div>
-       <MainLayout>
-      {
-        !state.isLoading ?
-          <CardGroup data={state.data}>
-            <Paginate numberOfPages={state.numberOfPages} clickedPage={async (clickedPage) => await setState({...state, clickedPage })} field={`home/${group}`} pathSection={subgroup} currentPage={pageNumber} />
-          </CardGroup>
-          :
-          <section >
-            <CardGroup >
+  render() {
+    return (
+      <div>
+        {/* <ListMenu> */}
+        {
+          !this.state.isLoading ?
+            <CardGroup data={this.state.data}>
+              <Paginate numberOfPages={this.state.numberOfPages} clickedPage={async (clickedPage) => await this.setState({ clickedPage })} field={`home/${this.state.group}`} pathSection={this.state.subgroup} currentPage={this.state.pageNumber} />
             </CardGroup>
-            <Spinner />
-          </section>
-      }
-       </MainLayout>
-
-    </div>
-  )
+            :
+            <section >
+              <CardGroup >
+              </CardGroup>
+              <Spinner />
+            </section>
+        }
+        {/* </ListMenu > */}
+      </div>
+    )
+  }
 }
 
-export default Store
 
+
+const ProductsList = withRouter(ProductsListtt)
+export default ProductsList 
