@@ -11,7 +11,7 @@ import { HOME_CATEGORIZED_PRODUCTS_LIMIT } from 'configs'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import MainLayout  from 'layouts/MainLayout'
+import MainLayout from 'layouts/MainLayout'
 import { MainCustomers } from 'components/customers/MainCustomers/MainCustomers.page'
 
 const useStyles = makeStyles((theme) => ({
@@ -28,22 +28,8 @@ export default function HomePage({ categorizedProducts }) {
     <>
       <Head title=" پارسیان" />
       <MainLayout>
-        {/* {categorizedProducts.map((item, index) => (
-          <div key={index}>
-            <Typography variant="h6">کالا های گروه {item.name.replace('کالاهای', '')}</Typography>
-            <Grid container spacing={2} className={classes.box}>
-              {
-                item.data.map(product => (
-                  <Grid key={product.id} item xs={12} sm={6} md={6} lg={4} xl={3} >
-                    <ProductItem product={product} />
-                  </Grid>
-                ))
-              }
-            </Grid>
-          </div>
-        ))
-        } */}
-        <MainCustomers/>
+
+        <MainCustomers />
 
       </MainLayout>
     </>
