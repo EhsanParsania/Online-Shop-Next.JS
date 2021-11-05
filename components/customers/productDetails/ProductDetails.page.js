@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 // import { CssBaseline } from '@material-ui/core';
 import { BASE_URL } from '../../../api/Variables.api';
 import  {BreadCrumb}  from './component/BreadCrumb.component';
-import  StoreHeader  from 'layouts/MainLayout';
+import  MainLayout  from 'layouts/MainLayout';
 import { Toolbar } from '@material-ui/core'
 import { InputNumber } from './component/InputNumber.component';
 // import { withRouter } from 'react-router-dom';
@@ -149,7 +149,7 @@ function ProductDetails(props) {
   }
 
   if (product) return (
-    <StoreHeader style={{ flexDirection: 'column' }}>
+    <MainLayout style={{ flexDirection: 'column' }}>
       <Toolbar />
       {/* <CssBaseline /> */}
       <Card className={classes.root} raised={true}>
@@ -237,7 +237,7 @@ function ProductDetails(props) {
 
 
       </Card>
-    </StoreHeader>
+    </MainLayout>
   );
   else return false
 }

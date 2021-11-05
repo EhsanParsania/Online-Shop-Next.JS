@@ -14,6 +14,8 @@ import Grid from '@material-ui/core/Grid'
 import MainLayout from 'layouts/MainLayout'
 import { MainCustomers } from 'components/customers/MainCustomers/MainCustomers.page'
 
+import { ListMenu } from 'components/customers/ListMenu/ListMenu'
+
 const useStyles = makeStyles((theme) => ({
   box: {
     marginTop: theme.spacing(1),
@@ -27,11 +29,14 @@ export default function HomePage({ categorizedProducts }) {
   return (
     <>
       <Head title=" پارسیان" />
-      <MainLayout>
+      {/* <MainLayout> */}
 
+      {/* <MainCustomers /> */}
+      <ListMenu >
         <MainCustomers />
+      </ListMenu>
 
-      </MainLayout>
+      {/* </MainLayout> */}
     </>
   )
 }

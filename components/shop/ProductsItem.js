@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function ProductsItem({ product: { id, name, image, price } }) {
+ function ProductsItem({ product: { id, name, image, price } }) {
     const classes = useStyles()
 
     return (
