@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { getFilteredProducts } from 'api/API'
-import {  Paginate, CardGroup, Spinner } from 'components/common/index'
+import { Paginate, CardGroup, Spinner } from 'components/common/index'
 // import { withRouter } from 'react-router'
 
-import {ListMenu} from 'components/customers/ListMenu/ListMenu'
-
-class ProductsList extends Component {
+import { ListMenu } from 'components/customers/ListMenu/ListMenu'
+import { withRouter } from 'next/router'
+class ProductsListt extends Component {
   state = {
     pageNumber: 1,
     numberOfPages: '',
@@ -16,8 +16,9 @@ class ProductsList extends Component {
   }
 
   async componentDidMount() {
-    const { group, subgroup, id } = this.props.match.params
-    console.log(group, subgroup)
+
+    const { group, subgroup, id } = this.props.router.pathname
+    console.log(group, subgroup,id)
     await this.setState({
       pageNumber: id,
       group,
@@ -30,14 +31,14 @@ class ProductsList extends Component {
 
 
   async shouldComponentUpdate(nextProps, nextState) {
-    const { id, subgroup } = this.props.match.params
-    
-    if (this.props.match.params.id !== nextProps.match.params.id || this.props.match.params.subgroup !== nextProps.match.params.subgroup || this.props.match.params.group !== nextProps.match.params.group) {
+    const { id, subgroup } = this.props.router.pathname
+
+    if (this.props.router.pathname.id !== nextProps.router.pathname.id || this.props.router.pathname.subgroup !== nextProps.router.pathname.subgroup || this.props.router.pathname.group !== nextProps.router.pathname.group) {
 
 
-      const subgroup = nextProps.match.params.subgroup
-      const id = nextProps.match.params.id
-      const group = nextProps.match.params.group
+      const subgroup = nextProps.router.pathname.subgroup
+      const id = nextProps.router.pathname.id
+      const group = nextProps.router.pathname.group
       await this.handleGetData(group, subgroup, id)
       await this.setState({ group: group, pageNumber: id, subgroup: subgroup })
       this.setState({ isLoading: false })
@@ -75,7 +76,7 @@ class ProductsList extends Component {
               <section >
                 <CardGroup >
                 </CardGroup>
-                  <Spinner />
+                <Spinner />
               </section>
           }
         </ListMenu >
@@ -85,5 +86,5 @@ class ProductsList extends Component {
 }
 
 
-
+const ProductsList = withRouter(ProductsListt)
 export { ProductsList }

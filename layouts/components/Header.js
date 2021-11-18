@@ -87,37 +87,6 @@ const Header = () => {
     return (
         <AppBar position="sticky">
             <Toolbar>
-                {/* <StoreHeader /> */}
-                {/* <Typography variant="h6" className={classes.title}>
-                    <Link href='/'>
-                        فروشگاه
-                    </Link>
-                    <Spinner open={loading} />
-                </Typography>
-                <div className={classes.grow} />
-                <div className={classes.sectionDesktop}>
-                    <a href='/admin/login'><Button color="inherit" className={classes.button}>مدیریت</Button></a>
-                    <Link href='/cart' passHref>
-                        <Button color="inherit">
-                            {cart}
-                            سبد خرید
-                        </Button>
-                    </Link>
-                </div>
-                <div className={classes.sectionMobile}>
-                    <a href='/admin/login'><Button color="inherit" className={classes.button}>مدیریت</Button></a>
-                    <Link href='/cart' passHref>
-                        <Button color="inherit">
-                            {cart}
-                        </Button>
-                    </Link>
-                </div> */}
-
-
-
-
-
-
                 <Typography variant="h6" className={classes.title}>
                     <Link href='/' passHref >
                         <div style={style.logoContainer}>

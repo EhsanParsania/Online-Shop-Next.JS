@@ -30,6 +30,7 @@ import { IconGenerator } from './component/IconGenerator.component';
 import { getListIcons } from 'api/API';
 
 import { wordToPersian } from 'utils/convertNameToPersian'
+import MainLayout from 'layouts/MainLayout';
 
 
 
@@ -39,6 +40,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -172,12 +174,13 @@ function ListMenu(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <div>
-          <Toolbar>
-            <IconButton
+    <MainLayout>
+      <div className={classes.root}>
+        {/* <CssBaseline /> */}
+        {/* <AppBar position="fixed" className={classes.appBar}> */}
+          {/* <div>
+            <Toolbar>
+              <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
@@ -194,52 +197,53 @@ function ListMenu(props) {
               <Image className={'next-image-logoText'} src={logoText} alt='logoText' height='37' width='160' />
             </Typography>
 
-            {/* <div className={classes.spacer}>
-          </div> */}
+            <div className={classes.spacer}>
+          </div>
 
             <CartButton />
             <SearchField />
 
-          </Toolbar>
-        </div>
+            </Toolbar>
+          </div> */}
 
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {props.children}
-      </main>
-    </div>
+        {/* </AppBar> */}
+        <nav className={classes.drawer} aria-label="mailbox folders">
+          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          <Hidden smUp implementation="css">
+            <Drawer
+              container={container}
+              variant="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              variant="permanent"
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {props.children}
+        </main>
+      </div>
+    </MainLayout>
   );
 }
 
