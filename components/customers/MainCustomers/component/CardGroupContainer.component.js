@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Divider } from '@material-ui/core';
 
-import { MediaCard } from 'components/common/MediaCard/MediaCard.component';
+import { MediaCard } from 'components/common/MediaCard/MediaCard';
 import { getData } from 'api/API';
-import { Spinner } from 'components/common/Spinner.componet'
+import { Spinner } from 'components/common/Spinner'
 import { wordToPersian } from 'utils/convertNameToPersian';
 
 const useStyles = makeStyles((theme) => ({

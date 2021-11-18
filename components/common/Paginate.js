@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import Link from 'next/link'
 import { PaginationItem } from '@material-ui/lab';
+import { CollectionsOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,14 +21,18 @@ const useStyles = makeStyles((theme) => ({
 export function Paginate(props) {
 
   const classes = useStyles();
-
+console.log(props)
 
   // onChange gives you event and number which clicked on it :
   const handlePageChange = async (event, pageNumber) => {
-    props.clickedPage(pageNumber)
+    props.clickedPage(pageNumber)  
+    const {field,pathSection}=props
+    const url=`/${field}/${pathSection}/${pageNumber}`
+    window.history.replaceState({}, '', url);
   }
 
   return (
+    
     <div dir='ltr' className={classes.root}>
       <Pagination
         // boundaryCount={props.defaultPage}
@@ -37,14 +42,17 @@ export function Paginate(props) {
         // defaultPage={0}
         onChange={handlePageChange}
         color='primary'
-        renderItem={(item) => (
-          <PaginationItem
-            component={Link}
-            //  creating address for the Link 
-            to={`/${props.field}/${props.pathSection}/${item.page}`}
-            {...item}
-          />
-        )}
+        // renderItem={(item) => {
+        //   const {field,pathSection}=props
+        //   const path=`/${field}/${pathSection}/${item.page}`
+        //   return  <PaginationItem
+        //   component={Link}
+        //   //  creating address for the Link 
+        //   href={path}
+        //   {...item}
+        // />
+        // }
+        // }
       />
 
     </div>
