@@ -1,6 +1,6 @@
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import { Link } from 'next/link';
+import  Link  from 'next/link';
 import ArrowBackIosSharpIcon from '@material-ui/icons/ArrowBackIosSharp';
 import { makeStyles } from '@material-ui/core';
 // import { wordToPersian } from '../../../../utils/convertNameToPersian';

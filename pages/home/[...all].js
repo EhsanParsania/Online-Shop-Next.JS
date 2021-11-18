@@ -1,42 +1,10 @@
 import React, { Component } from 'react'
 import { getFilteredProducts } from 'api/API'
 import { Paginate, CardGroup, Spinner } from 'components/common/index'
-// import { withRouter } from 'react-router'
 import { isEqual } from 'lodash'
 
 import { ListMenu } from 'components/customers/ListMenu/ListMenu'
 import { withRouter } from 'next/router'
-
-
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-
-// const ProductsListt = (props) => {
-//   const [pageNumber, setPageNumber] = React.useState(1)
-//   const [numberOfPages, setNumberOfPages] = React.useState(1)
-//   const [data, setData] = React.useState([{}])
-//   const [group, setGroup] = React.useState('')
-//   const [subGroup, setSubGroup] = React.useState('')
-//   const [isLoading, setIsLoading] = React.useState(true)
-
-//   console.log(props.router,'withrouter')
-
-//   const path=useRouter()
-
-//   useEffect(() => {
-
-//     console.log(path)
-
-//   }, [])
-
-//   return (
-//     <div>
-//       HELLO
-//     </div>
-//   )
-// }
-
-
 class ProductsListtt extends Component {
   state = {
     pageNumber: 1,
@@ -49,31 +17,9 @@ class ProductsListtt extends Component {
   }
 
   async componentDidMount() {
-    // const [id,group,subgroup]=path.query.all
-    // console.log(id,group,subgroup)
-    // await this.setState({
-    //   pageNumber: id,
-    //   group,
-    //   subgroup
-    // })
-
-    // await this.handleGetData(group, subgroup, id)
-    // this.setState({ isLoading: false })
-  }
-
-  async componentDidUpdate(prevProps, prevState) {
     const newPath = this.getPath()
     const path = this.state.path
-
-
-    if (path && !isEqual(path, newPath) || path === ''){
-      console.log(newPath)
-
-      this.setState({ path: newPath })
-    }
-
-
-    if (path && !isEqual(path, newPath)) {
+    if (newPath && !isEqual(path, newPath)) {
       const [group, subgroup, id] = newPath.query.all
       await this.handleGetData(group, subgroup, id)
       await this.setState({ group: group, pageNumber: id, subgroup: subgroup })
@@ -81,29 +27,24 @@ class ProductsListtt extends Component {
       console.log('3')
 
     }
-
   }
 
-
-  // async shouldComponentUpdate(nextProps, nextState) {
-  //   // const [group,subgroup,id] = this.state.path.query.all
-  //   console.log(this.state.path.query)
-
-
-
-  //   if(group && subgroup && id){
-  //     await this.handleGetData(group, subgroup, id)
-  //     await this.setState({ group: group, pageNumber: id, subgroup: subgroup })
-  //     this.setState({ isLoading: false })
-  //     return true
-  //   }
-  //   else return false
-  // }
-
+  async componentDidUpdate(prevProps, prevState) {
+    const newPath = this.getPath()
+    const path = this.state.path
+    if (path && !isEqual(path, newPath) || path === '') {
+      this.setState({ path: newPath })
+    }
+    if (path && !isEqual(path, newPath)) {
+      const [group, subgroup, id] = newPath.query.all
+      await this.handleGetData(group, subgroup, id)
+      await this.setState({ group: group, pageNumber: id, subgroup: subgroup })
+      this.setState({ isLoading: false })
+    }
+  }
 
   handleGetData = async (group, subgroup, id = 1) => {
     const limit = 6
-
     try {
       const { data = [{}], headers } = await getFilteredProducts(group, subgroup, limit, id)
       const totalCount = headers ? headers['x-total-count'] : 1
@@ -117,7 +58,7 @@ class ProductsListtt extends Component {
   }
 
   getPath() {
-   return this.props.router
+    return this.props.router
   }
 
   render() {
@@ -141,7 +82,6 @@ class ProductsListtt extends Component {
     )
   }
 }
-
 
 const ProductsList = withRouter(ProductsListtt)
 export default ProductsList
