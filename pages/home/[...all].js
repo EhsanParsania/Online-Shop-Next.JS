@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getFilteredProducts } from 'api/API'
 import { Paginate, CardGroup, Spinner } from 'components/common/index'
 // import { withRouter } from 'react-router'
+import { isEqual } from 'lodash'
 
 import { ListMenu } from 'components/customers/ListMenu/ListMenu'
 import { withRouter } from 'next/router'
@@ -61,13 +62,24 @@ class ProductsListtt extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { path, id } = this.state
-    if (!path) this.getPath()
-    if (path && prevState.path !== path || id !== prevState.id) {
-      const [group, subgroup, id] = this.state.path.query.all
+    const newPath = this.getPath()
+    const path = this.state.path
+
+
+    if (path && !isEqual(path, newPath) || path === ''){
+      console.log(newPath)
+
+      this.setState({ path: newPath })
+    }
+
+
+    if (path && !isEqual(path, newPath)) {
+      const [group, subgroup, id] = newPath.query.all
       await this.handleGetData(group, subgroup, id)
       await this.setState({ group: group, pageNumber: id, subgroup: subgroup })
       this.setState({ isLoading: false })
+      console.log('3')
+
     }
 
   }
@@ -105,8 +117,7 @@ class ProductsListtt extends Component {
   }
 
   getPath() {
-    const path = this.props.router
-    this.setState({ path })
+   return this.props.router
   }
 
   render() {
