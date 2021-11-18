@@ -25,11 +25,10 @@ console.log(props)
 
   // onChange gives you event and number which clicked on it :
   const handlePageChange = async (event, pageNumber) => {
-    console.log(pageNumber, 'pageNumber')
     props.clickedPage(pageNumber)  
     const {field,pathSection}=props
     const url=`/${field}/${pathSection}/${pageNumber}`
-    window.history.pushState({}, '', url);
+    window.history.replaceState({}, '', url);
   }
 
   return (
@@ -53,7 +52,6 @@ console.log(props)
         //   {...item}
         // />
         // }
-         
         // }
       />
 
