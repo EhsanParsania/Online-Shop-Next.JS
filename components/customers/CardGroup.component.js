@@ -47,11 +47,13 @@ function CardGroup(props) {
 
   const [state, setState] = useState()
 
-  useEffect(async () => {
+  useEffect(() => {
 
     // get data from props ( from product list page or ...)
-    const data = await props.data
-    await setState(data)
+    (async () => {
+      const data = await props.data
+      await setState(data)
+    })()
 
   }, [state, props])
 
